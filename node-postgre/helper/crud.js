@@ -47,4 +47,17 @@ function updateNasabah(id, namaLengkap, jenisKelamin, noTelp, email, alamat) {
     }
   });
 }
-module.exports = { postsNasabah, indexNasabah, showNasabah, updateNasabah };
+
+function deleteNasabah(id) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let result = await pool.query('DELETE FROM nasabah WHERE nasabah_id = $1', [id]);
+      if (!result.rowCount) return reject(`Post with id ${id} doesn't not exist`);
+
+      return resolve(`Post with id ${id} deleted`);
+    } catch (err) {
+      return reject(err);
+    }
+  });
+}
+module.exports = { postsNasabah, indexNasabah, showNasabah, updateNasabah, deleteNasabah };
