@@ -11,4 +11,15 @@ function postsNasabah(namaLengkap, jenisKelamin, noTelp, email, alamat) {
   });
 }
 
-module.exports = postsNasabah;
+function indexNasabah() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let result = await pool.query('SELECT * from nasabah');
+      return resolve(result.rows);
+    } catch (err) {
+      return reject(err);
+    }
+  });
+}
+
+module.exports = { postsNasabah, indexNasabah };
