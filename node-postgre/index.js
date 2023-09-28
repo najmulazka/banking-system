@@ -1,4 +1,4 @@
-const { postsNasabah, indexNasabah, showNasabah, updateNasabah } = require('./helper/crud');
+const { postsNasabah, indexNasabah, showNasabah, updateNasabah, deleteNasabah } = require('./helper/crud');
 
 async function main() {
   try {
@@ -18,6 +18,10 @@ async function main() {
     // Mengupdate data nasabah
     let postUpdateNasabah = await updateNasabah('1', 'Tukiman', 'Laki-laki', '088823927579', 'najmulazka@gmail.com', 'Purbalingga');
     console.log(postUpdateNasabah);
+
+    // Menghapus data nasabah
+    let postDeleteNasabah = await deleteNasabah(4);
+    console.log(postDeleteNasabah);
   } catch (err) {
     console.log(err);
   }
